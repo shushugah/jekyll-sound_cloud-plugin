@@ -4,7 +4,7 @@ require 'shellwords'
 module Jekyll
   module SoundCloud
     class SoundCloudTag < Liquid::Tag
-      BASE_URL= "https://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F".freeze
+      BASE_URL= "https://player.soundcloud.com/player.swf?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F".freeze
 
       def initialize(tag_name, markup, tokens)
         super
@@ -16,7 +16,7 @@ module Jekyll
         case @sound[:widget]
 
         when 'html5'
-          "<iframe width='100%' height='166' scrolling='no' frameborder='no' src='http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{@sound[:id]}&show_artwork=true'></iframe>"
+          "<iframe width='100%' height='166' scrolling='no' frameborder='no' src='https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{@sound[:id]}&show_artwork=true'></iframe>"
         when 'flash'
           "<object height='81' width='100%'><param name='movie' value='#{BASE_URL + @sound[:id]}&amp;show_comments=false&amp;auto_play=false&amp;color=#{@sound[:color]}'></param><param name='allowscriptaccess' value='always'></param><embed allowscriptaccess='always' height='81' src='#{BASE_URL + @sound[:id]}&amp;show_comments=false&amp;auto_play=false&amp;color=#{@sound[:color]}' type='application/x-shockwave-flash' width='100%'></embed></object>"
         when "mini"
